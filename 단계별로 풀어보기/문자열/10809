@@ -1,0 +1,36 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+	public static void main(String[] args) {
+        
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		
+		sc.close();
+		
+		// a~z까지 배열의 갯수만큼 선언 후, -1로 초기화
+		int[] alphabetArr = new int[26];
+		Arrays.fill(alphabetArr, -1);
+		
+		for (int i = 0; i < s.length(); i++) {
+			// 주어진 단어 ASCII 코드로 변환
+			char currentAlphabet = s.charAt(i);
+			int currentAlphabetASCII = (int)currentAlphabet;
+			
+			int alphabetASCII = 97;  // 소문자 a (ASCII코드)
+			for(int j = 0; j < alphabetArr.length; j++) {
+				// 처음 등장하는지 확인 && 문자 일치시
+				if (alphabetArr[j] == -1 && currentAlphabetASCII == alphabetASCII) {
+					alphabetArr[j] = i;
+				}
+				alphabetASCII++;  // 소문자 a~z 반복
+			}
+		}
+		
+		// 숫자 배열 문자열로 변환하여 출력
+		String answer = Arrays.toString(alphabetArr).replace(",", "").replaceAll("\\[|]", "");
+		System.out.println(answer);
+        
+	}
+}
