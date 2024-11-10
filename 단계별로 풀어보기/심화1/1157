@@ -10,32 +10,32 @@ public class Main {
 		String inputWord = sc.next().toUpperCase();
 		sc.close();
 		
-        // 각 알파벳의 등장 횟수 계산
-        Map<String, Integer> alphabetCount = new HashMap<>();
-        for (int i = 0; i < inputWord.length(); i++) {
-            String currentChar = String.valueOf(inputWord.charAt(i));
-            alphabetCount.put(currentChar, alphabetCount.getOrDefault(currentChar, 0) + 1);
-        }
+	        // 각 알파벳의 등장 횟수 계산
+	        Map<String, Integer> alphabetCount = new HashMap<>();
+	        for (int i = 0; i < inputWord.length(); i++) {
+	            String currentChar = String.valueOf(inputWord.charAt(i));
+	            alphabetCount.put(currentChar, alphabetCount.getOrDefault(currentChar, 0) + 1);
+	        }
+	        
+	        // 등장 횟수가 제일 많은 알파벳 찾기
+	        int maxValue = Collections.max(alphabetCount.values());
+	        int duplicateValueCount = 0;
+	        String keyMaxValue = null;
         
-        // 등장 횟수가 제일 많은 알파벳 찾기
-        int maxValue = Collections.max(alphabetCount.values());
-        int duplicateValueCount = 0;
-        String keyMaxValue = null;
+	        for (Map.Entry<String, Integer> entry : alphabetCount.entrySet()) {
+	        	if (maxValue == entry.getValue()) {
+	        		duplicateValueCount++;
+	        		keyMaxValue = entry.getKey();
+	                if (duplicateValueCount > 1) {  // 등장 횟수가 많은 알파벳 출력 (중복)
+	                    System.out.print("?");
+	                    return;
+	                }
+	            }
+	        }
         
-        for (Map.Entry<String, Integer> entry : alphabetCount.entrySet()) {
-        	if (maxValue == entry.getValue()) {
-        		duplicateValueCount++;
-        		keyMaxValue = entry.getKey();
-                if (duplicateValueCount > 1) {  // 등장 횟수가 많은 알파벳 출력 (중복)
-                    System.out.print("?");
-                    return;
-                }
-            }
-        }
-        
-        if (duplicateValueCount == 1) {  // 등장 횟수가 많은 알파벳 출력
-        	System.out.print(keyMaxValue);
-        }
+	        if (duplicateValueCount == 1) {  // 등장 횟수가 많은 알파벳 출력
+	        	System.out.print(keyMaxValue);
+	        }
         
 	}
 }
