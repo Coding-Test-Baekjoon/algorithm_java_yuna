@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+		
+		    String gradeArr[] = {"A+", "A0", "B+", "B0", "C+", "C0", "D+", "D0", "F", "P"};
+        double gradeScoreArr[] = {4.5, 4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.0, 0.0};
+        
+        double subjectsSum = 0.0;  // 학점 * 과목 평점 총합
+        double subjectsCreditSum = 0.0;  // 학점 총합
+        
+        for (int i = 0 ; i < 20; i++) {
+            String subjects = sc.next();
+            double subjectsCredit = sc.nextDouble();  // 학점
+            String subjectsGrade = sc.next();  // 과목평점 (A+, A0, B+...)
+            
+            // 패스/논패스 과목은 계산에서 제외
+            if (subjectsGrade.equals("P")) {
+                continue;
+            }
+            
+            // 과목 평점을 숫자로 환산 (A+ -> 4.5)
+            int subjectsGradeIndex = Arrays.asList(gradeArr).indexOf(subjectsGrade);
+            double subjectsScore = gradeScoreArr[subjectsGradeIndex];
+            
+            subjectsSum += subjectsCredit * subjectsScore;
+            subjectsCreditSum += subjectsCredit;
+        }
+
+        sc.close();
+        
+        if (subjectsCreditSum == 0) {
+            System.out.println(0.0);
+        } else {
+        	System.out.printf("%.6f\n", subjectsSum / subjectsCreditSum);
+        }
+        
+    }
+}
