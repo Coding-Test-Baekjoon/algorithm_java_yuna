@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int[] requiredChess = {1, 1, 2, 2, 2, 8};
+		
+		for(int i = 0; i < requiredChess.length; i++) {
+			int haveChess = sc.nextInt();
+			System.out.print((requiredChess[i] - haveChess) + " ");
+		}
+        
+    sc.close();
+		
+	}
+}
