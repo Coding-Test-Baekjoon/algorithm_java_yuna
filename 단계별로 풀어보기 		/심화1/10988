@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		String word = sc.next();
+		sc.close();
+
+		int wordLength = word.length();
+		int halfWordLength = wordLength / 2;
+		String firstSplitWord = word.substring(0, halfWordLength);
+		String secondSplitWord = word.substring(halfWordLength, wordLength);
+
+        // 문자열의 문자 갯수가 홀수일 경우
+		if (wordLength % 2 != 0) {  
+			secondSplitWord = word.substring(halfWordLength+1, wordLength);
+		}
+
+  		// 두번째 문자열 반전 (ex. joon -> nooj)
+		String reversedSecondSplitWord = new StringBuilder(secondSplitWord).reverse().toString();
+		
+		if (firstSplitWord.equals(reversedSecondSplitWord)) {
+		    System.out.println(1);
+		} else {
+		    System.out.println(0);
+		}
+  
+	}
+}
