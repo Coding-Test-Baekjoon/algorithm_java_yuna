@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		String word = sc.next();
+		sc.close();
+
+		String[] changedCharArr = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+		int changedCharCount = 0;
+		
+		for (String currentChar : changedCharArr) {
+                        while (word.contains(currentChar)) {
+                        word = word.replaceFirst(currentChar, " ");
+                        changedCharCount += 1;
+                    }
+                }
+		
+		word = word.replace(" ", "");
+		System.out.println(word.length() + changedCharCount);
+        
+	}
+}
