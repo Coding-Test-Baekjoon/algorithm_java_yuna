@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+	
+        int groupWordCount = 0;
+	
+        for (int i = 0; i < N; i++) {
+            String word = sc.next();
+            if (isGroupWord(word)) {
+                groupWordCount += 1;
+            }
+        }
+
+        System.out.println(groupWordCount);
+        sc.close();
+    }
+
+    // 그룹 단어 판별 함수
+    public static boolean isGroupWord(String word) {
+        boolean[] existAlphabetArr = new boolean[26];
+        char prevAlphabet = ' '; // 이전 알파벳
+
+        for (int j = 0; j < word.length(); j++) {
+            char currentAlphabet = word.charAt(j);
+
+            // 알파벳 비연속시
+            if (currentAlphabet != prevAlphabet) {
+                if (existAlphabetArr[currentAlphabet - 'a']) {  // 이전에 나왔던 알파벳인지 확인
+                    return false;
+                }
+                existAlphabetArr[currentAlphabet - 'a'] = true;
+            }
+
+            prevAlphabet = currentAlphabet;
+        }
+
+        return true; // 그룹 단어일 시
+    }
+}
