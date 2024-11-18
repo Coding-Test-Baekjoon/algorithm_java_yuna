@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+
+	Scanner sc = new Scanner(System.in);
+
+		int[][] numArr = new int[9][9];
+        int maxNum = 0;  // 최댓값
+        int xIndex = 0;  // 행 번호
+        int yIndex = 0;  // 열 번호
+        
+        for (int i = 0; i < 9; i++) {
+        	for (int j = 0; j < 9; j++) {
+	        	int num = sc.nextInt();
+        		numArr[i][j] = num;
+        		
+        		if (maxNum < numArr[i][j]) {
+        			maxNum = numArr[i][j];
+        			xIndex = i;
+        			yIndex = j;
+        		}
+        	}
+        }
+        
+        System.out.println(maxNum);
+        System.out.println((xIndex+1) + " " + (yIndex+1));
+	}
+}
