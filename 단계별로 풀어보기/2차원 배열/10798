@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        char[][] inputArr = new char[5][];
+	 
+	        int xMax = 0;  // 각 행 중 최고 열 갯수
+        
+	        // i: 행 / j: 열
+	        for (int i = 0; i < 5; i++) {
+	        	String input = sc.next();
+	        	if (input.length() > xMax) {
+	        		xMax = input.length();
+	        	}
+	        	inputArr[i] = new char[input.length()];  // 배열 내의 행 크기 개별 동적 할당
+	        	
+	        	for (int j = 0; j < input.length(); j++) {
+	        		inputArr[i][j] = input.charAt(j);
+	        	}
+	        }
+		sc.close();
+        
+	        // 배열 출력 i: 열 / j: 행
+	        for (int i = 0; i < xMax; i++) {
+	        	 for (int j = 0; j < 5; j++){
+	        		 if (i < inputArr[j].length) {
+	        			 System.out.print(inputArr[j][i]);
+	        		 }
+	        	 }
+	        }
+        
+	}
+}
