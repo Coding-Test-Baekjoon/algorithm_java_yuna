@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+        
+	        Scanner sc = new Scanner(System.in);
+	        
+	        int a = sc.nextInt();  // 낮에 올라가는 높이
+	        int b = sc.nextInt();  // 밤에 미끄러지는 높이
+	        int v = sc.nextInt();  // 올라가야 하는 높이
+	        
+	        sc.close();
+	        
+	        int day = (v-b) / (a-b);
+	        
+	        if ((v-b) % (a-b) != 0) {
+	        	day += 1;
+	        }
+	        
+	        System.out.println(day);
+	        
+	}
+}
