@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        
+	        int n = sc.nextInt();
+	        sc.close();
+	        
+	        int depth = 1;  // 해당하는 벌집이 몇번째 단계인지
+	        int depthIncrease = 0;  // 증가하는 벌집 수
+	        int depthLastNum = 1;  // 각 단계 벌집의 마지막 번호
+	        
+	        while (depthLastNum < n) {
+	        	depth += 1;
+	        	depthLastNum += depthIncrease;
+	        	depthIncrease += 6;  // 각 단계에 벌집 수는 6, 12, 18씩 증가 (ex. 2 ~ 7 / 8 ~ 19 / 20 ~ 37)
+	        }
+	        
+	        if (depth != 1) {
+	        	depth -= 1;
+	        }
+	        
+	        System.out.println(depth);
+	}
+}
