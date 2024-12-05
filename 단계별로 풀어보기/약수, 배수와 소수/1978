@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+ 
+	        Scanner sc = new Scanner(System.in);
+	        int n = sc.nextInt();  // 입력 받을 수의 개수
+	 
+	        int answer = 0;  // 소수에 해당하는 수의 최종 개수
+        
+	        for (int i = 0; i < n; i++) {
+	        	int currentNum = sc.nextInt();  // 입력 받은 수
+	        	int currentNumDivisorCount = 0;  // 입력 받은 수의 약수 개수
+	        	
+	        	for (int j = 1; j <= currentNum; j++) {
+	        		if (currentNum % j == 0) {
+	        			currentNumDivisorCount += 1;
+	        		}
+	        	}
+
+	  		// 소수일 경우
+	        	if (currentNumDivisorCount == 2) {  
+	        		answer += 1;
+	        	}
+	        }
+        
+	        sc.close();
+	        
+	        System.out.println(answer);
+	}
+}
