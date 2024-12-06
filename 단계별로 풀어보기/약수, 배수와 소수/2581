@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+ 
+	        Scanner sc = new Scanner(System.in);
+	        int m = sc.nextInt();
+	        int n = sc.nextInt();
+	        sc.close();
+	        
+	        ArrayList<Integer> decimalList = new ArrayList<>();  // 소수를 담아둘 리스트
+        
+	        for (; m <= n; m++) {
+	        	int currentNumDivisorCount = 0;  // 약수의 개수
+	        	
+	        	for (int j = 1; j <= m; j++) {
+	        		if (m % j == 0) {
+	        			currentNumDivisorCount += 1;
+	        		}
+	        	}
+	        	
+	        	if (currentNumDivisorCount == 2) {  // 소수일 때만 리스트에 저장
+	        		decimalList.add(m);
+	        	}
+	        }
+        
+	        int decimalSum = 0;  // 소수의 합
+	        for (int decimal : decimalList) {
+	        	decimalSum += decimal;
+	        }
+	        
+	        if (decimalList.isEmpty()) {
+	        	System.out.println(-1);
+	        } else {
+	        	System.out.println(decimalSum);
+	       		System.out.println(decimalList.get(0));  // 소수 중 최솟값
+	        }
+	}
+}
