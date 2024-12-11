@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+        
+		Scanner sc = new Scanner(System.in);
+
+	        int[] rect1Arr = new int[3];
+	        int[] rect2Arr = new int[3];
+	
+	        for (int i = 0; i < 3; i++) {
+	        	rect1Arr[i] = sc.nextInt();
+	        	rect2Arr[i] = sc.nextInt();
+	        }
+	        
+	        sc.close();
+	
+	        int rect1Dot = findDot(rect1Arr);
+	        int rect2Dot = findDot(rect2Arr);
+	
+	        System.out.println(rect1Dot + " " + rect2Dot);
+        
+	}
+	
+	private static int findDot(int[] arr) {
+	        int dot = 0;
+	        for (int num : arr) {
+	        	dot ^= num;  // 같은 값이 2개 있을 시 사라짐
+	        }
+	        return dot;
+    	}
+    
+}
