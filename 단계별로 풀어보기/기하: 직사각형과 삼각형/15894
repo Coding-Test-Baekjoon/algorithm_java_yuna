@@ -4,10 +4,10 @@ public class Main {
         
 		Scanner sc = new Scanner(System.in);
 
-        long n = sc.nextLong();
-        sc.close();
-        
-        System.out.println(n*4);
+	        long n = sc.nextLong();
+	        sc.close();
+	        
+	        System.out.println(n*4);
         
 	}
 }
