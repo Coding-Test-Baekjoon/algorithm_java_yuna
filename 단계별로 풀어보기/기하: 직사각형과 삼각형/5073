@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+ 
+		Scanner sc = new Scanner(System.in);
+        
+		while (true) {
+			int side1Length = sc.nextInt();
+			int side2Length = sc.nextInt();
+			int side3Length = sc.nextInt();
+			int maxSideLength = Math.max(side1Length, Math.max(side2Length, side3Length));  // 제일 긴 변의 길이
+			
+			if (side1Length == 0) {
+				break;
+			}
+			
+			if (maxSideLength >= (side1Length + side2Length + side3Length - maxSideLength)) {
+		        	System.out.println("Invalid");
+		        } else if (side1Length == side2Length && side2Length == side3Length) {
+		                System.out.println("Equilateral");
+		        } else if (side1Length == side2Length || side2Length == side3Length || side1Length == side3Length) {
+		                System.out.println("Isosceles");
+		        } else {
+		                System.out.println("Scalene");
+		        }
+		}       
+		
+		sc.close();
+	}
+}
