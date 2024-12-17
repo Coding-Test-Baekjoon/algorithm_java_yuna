@@ -1,0 +1,22 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        
+	Scanner sc = new Scanner(System.in);
+
+        int side1Length = sc.nextInt();
+        int side2Length = sc.nextInt();
+        int side3Length = sc.nextInt();
+        sc.close();
+
+        int maxSideLength = Math.max(side1Length, Math.max(side2Length, side3Length));
+        int sumLength = side1Length + side2Length + side3Length;
+
+        if (sumLength - maxSideLength > maxSideLength) {
+            System.out.println(sumLength);
+        } else {
+            System.out.println((sumLength - maxSideLength) * 2 - 1);
+        }
+    
+    }
+}
