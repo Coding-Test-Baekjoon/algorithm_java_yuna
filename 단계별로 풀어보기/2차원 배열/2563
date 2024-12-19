@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+ 
+                Scanner sc= new Scanner(System.in);
+        
+                boolean[][] paper = new boolean[100][100];
+                int paperNum = sc.nextInt(); 
+                int answer = 0; // 총 면적
+
+                for (int t = 0; t < paperNum; t++) {
+                        int x = sc.nextInt();
+                        int y = sc.nextInt();
+                    
+                        // 색종이 영역 칠하기
+                        for (int i = x; i < x + 10; i++) {
+                                for (int j = y; j < y + 10; j++) {
+                                        if (!paper[i][j]) {
+                                        paper[i][j] = true;
+                                        answer++;
+                                    }
+                                }
+                        }
+                }
+                
+                sc.close();
+                
+                System.out.println(answer);
+	}
+}
