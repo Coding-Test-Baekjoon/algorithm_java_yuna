@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+	public static void main(String[] args) throws IOException {
+    
+	        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	
+	        int n = Integer.parseInt(br.readLine());
+	        int[] xArr = new int[n];
+	        int[] sortedXArr;
+	        HashMap<Integer, Integer> rankMap = new HashMap<>();
+
+	        StringTokenizer st = new StringTokenizer(br.readLine());
+	        for (int i = 0; i < n; i++) {
+	        	xArr[i] = Integer.parseInt(st.nextToken());
+	        }
+
+	        sortedXArr = xArr.clone();
+	        Arrays.sort(sortedXArr);
+
+	        int rank = 0;
+	        for (int num : sortedXArr) {
+	        	if (!rankMap.containsKey(num)) {
+	                	rankMap.put(num, rank++);
+	            	}
+	        }
+
+	        StringBuilder sb = new StringBuilder();
+	        for (int i = 0; i < n; i++) {
+	        	sb.append(rankMap.get(xArr[i])).append(" ");
+	        }
+
+	        bw.write(sb.toString());
+	        bw.flush();
+	        bw.close();
+	        br.close();
+	 
+	}
+}
