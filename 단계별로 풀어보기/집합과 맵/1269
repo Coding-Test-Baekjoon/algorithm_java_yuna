@@ -1,0 +1,33 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+	public static void main(String[] args) {
+ 
+	        Scanner sc = new Scanner(System.in);
+	        int aNum = sc.nextInt();
+	        int bNum = sc.nextInt();
+        
+	        Set<Integer> aSet = new HashSet<>();
+	        for (int i = 0; i < aNum; i++) {
+	        	aSet.add(sc.nextInt());
+	        }
+
+	        Set<Integer> bSet = new HashSet<>();
+	        for (int i = 0; i < bNum; i++) {
+	        	bSet.add(sc.nextInt());
+	        }
+
+	        // A - B
+	        Set<Integer> aMinusB = new HashSet<>(aSet);
+	        aMinusB.removeAll(bSet);
+
+	        // B - A
+	        Set<Integer> bMinusA = new HashSet<>(bSet);
+	        bMinusA.removeAll(aSet);
+
+	        System.out.println(aMinusB.size() + bMinusA.size());
+	 
+	}
+}
