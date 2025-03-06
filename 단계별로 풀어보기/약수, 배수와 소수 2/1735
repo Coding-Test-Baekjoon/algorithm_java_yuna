@@ -1,0 +1,32 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+    		Scanner sc = new Scanner(System.in);
+    	
+	    	int molecule1 = sc.nextInt();
+	    	int denominator1 = sc.nextInt();
+	    	int molecule2 = sc.nextInt();
+	    	int denominator2 = sc.nextInt();
+	        sc.close();
+    	
+	    	int totalMolecule = (molecule1*denominator2) + (molecule2*denominator1);
+	    	int totalDenominator = denominator1*denominator2;
+	    	
+	    	int mod = gcd(totalMolecule, totalDenominator);
+    	
+    		System.out.println(totalMolecule/mod + " " + totalDenominator/mod);
+	}
+
+    	// 최대 공약수 구하기
+	private static int gcd(int a, int b) {
+        	while (b != 0) {
+            		int temp = b;
+			b = a % b;
+			a = temp;
+        	}
+	 
+        	return a;
+	}
+
+}
