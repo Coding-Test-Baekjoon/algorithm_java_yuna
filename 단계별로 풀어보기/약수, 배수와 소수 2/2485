@@ -1,0 +1,47 @@
+import java.util.*;
+public class Main {
+
+	// 최대공약수 구하기
+	public static int gcd(int a, int b) {
+		while (b != 0) {
+			int temp = a % b;
+			a = b;
+			b = temp;
+		}
+		return a;
+	}
+
+	public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        
+	        int n = sc.nextInt();
+	        int[] trees = new int[n];
+        
+	        for (int i = 0; i < n; i++) {
+	        	trees[i] = sc.nextInt();
+	        }
+        
+        	sc.close();
+        
+	        // 나무 간의 간격
+	        int[] distances = new int[n-1];
+	        for (int i = 0; i < n-1; i++) {
+	        	distances[i] = trees[i+1] - trees[i];
+	        }
+        
+	        // 간격 간의 최대공약수 구하기
+	        int gap = distances[0];
+	        for (int i = 1; i < n-1; i++) {
+	        	gap = gcd(gap, distances[i]);
+	        }
+
+	        // 필요한 나무의 개수 구하기
+	        int additionalTrees = 0;
+	        for (int i = 0; i < n-1; i++) {
+	        	additionalTrees += (distances[i] / gap) - 1;
+	        }
+        
+        	System.out.println(additionalTrees);
+	}
+ 
+}
