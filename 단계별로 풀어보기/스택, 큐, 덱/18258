@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    static Queue<Integer> queue = new LinkedList<>();
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int n = Integer.parseInt(br.readLine());
+
+        while((n--) > 0){
+            solution(br.readLine(), bw);
+        }
+
+        br.close();
+        bw.flush();
+		bw.close();
+    }
+
+    static void solution(String order, BufferedWriter bw) throws IOException {
+        String[] str = order.split(" ");
+
+        switch (str[0]) {
+            case "push":
+                queue.offer(Integer.parseInt(str[1]));
+                return;
+            case "pop":
+                bw.write(queue.isEmpty() ? "-1\n" : queue.poll() + "\n");
+                return;
+            case "size":
+                bw.write(queue.size() + "\n");
+                return;
+            case "empty":
+                bw.write(queue.isEmpty() ? "1\n" : "0\n");
+                return;
+            case "front":
+                bw.write(queue.isEmpty() ? "-1\n" : queue.peek() + "\n");
+                return;
+            case "back":
+                bw.write(queue.isEmpty() ? "-1\n" : ((LinkedList<Integer>) queue).peekLast() + "\n");
+                return;
+            default:
+                break;
+        }
+    }
+}
