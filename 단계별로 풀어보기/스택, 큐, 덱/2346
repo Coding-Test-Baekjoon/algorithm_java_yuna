@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class Main {
+    static class Balloon {
+        int balloonNumber;
+        int move;
+
+        Balloon(int balloonNumber, int move) {
+            this.balloonNumber = balloonNumber;
+            this.move = move;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int[] moves = new int[n];
+
+		// 종이에 적힌 숫자 입력 받기
+        for (int i = 0; i < n; i++) {
+            moves[i] = sc.nextInt();
+        }
+        
+        sc.close();
+        
+        List<Balloon> balloonsList = new ArrayList<>();
+
+		// 풍선 번호, 종이에 적힌 움직여야 될 숫자 리스트에 담기
+        for (int i = 0; i < n; i++) {
+            balloonsList.add(new Balloon(i + 1, moves[i]));
+        }
+        
+        List<Integer> burstList = new ArrayList<>();
+        int currentIndex = 0;
+        
+        while (!balloonsList.isEmpty()) {
+            Balloon currentBalloon = balloonsList.remove(currentIndex);
+            burstList.add(currentBalloon.balloonNumber);
+
+			// 마지막 풍선일 시 종료
+            if (balloonsList.isEmpty()) {
+                break;
+            }
+            
+            // 터뜨릴 풍선 위치 계산
+            int move = currentBalloon.move;
+            if (move > 0) {
+                currentIndex = (currentIndex + move - 1) % balloonsList.size();
+            } else {
+                currentIndex = (currentIndex + move) % balloonsList.size();
+            }
+
+            if (currentIndex < 0) {
+                currentIndex += balloonsList.size();
+            }
+        }
+        
+        for (int num : burstList) {
+            System.out.print(num + " ");
+        }
+    }
+}
