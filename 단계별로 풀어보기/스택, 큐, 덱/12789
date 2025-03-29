@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        
+        int[] queue = new int[n];
+        for (int i = 0; i < n; i++) {
+            queue[i] = sc.nextInt();
+        }
+
+		sc.close();
+        
+        Stack<Integer> stack = new Stack<>();
+        int next = 1;
+        
+        for (int i = 0; i < n; i++) {
+            int current = queue[i];
+            
+            while (!stack.isEmpty() && stack.peek() == next) {
+                stack.pop();
+                next++;
+            }
+            
+            if (current == next) {
+                next++;
+            } else {
+                stack.push(current);
+            }
+        }
+        
+        while (!stack.isEmpty() && stack.peek() == next) {
+            stack.pop();
+            next++;
+        }
+        
+        if (stack.isEmpty()) {
+            System.out.println("Nice");
+        } else {
+            System.out.println("Sad");
+    	}
+
+    }
+}
