@@ -1,0 +1,35 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        
+        sc.close();
+        
+        LinkedList<Integer> peopleList = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            peopleList.add(i);
+        }
+        
+        List<Integer> josephusPermutationList = new ArrayList<>();
+        int idx = 0;
+        while (!peopleList.isEmpty()) {
+            idx = (idx + k - 1) % peopleList.size();
+            josephusPermutationList.add(peopleList.remove(idx));
+        }
+        
+        System.out.print("<");
+        for (int i = 0; i < josephusPermutationList.size(); i++) {
+            if (i == josephusPermutationList.size() - 1) {
+                System.out.print(josephusPermutationList.get(i));
+            } else {
+                System.out.print(josephusPermutationList.get(i) + ", ");
+            }
+        }
+        System.out.println(">");
+        
+    }
+}
