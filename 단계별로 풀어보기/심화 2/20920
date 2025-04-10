@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+	
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+
+        Map<String, Integer> remindWord = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            String word = br.readLine();
+
+            if (word.length() >= m) {
+                remindWord.put(word, remindWord.getOrDefault(word, 0) + 1);
+            }
+        }
+
+        List<Map.Entry<String, Integer>> sortedList = new ArrayList<>(remindWord.entrySet());
+
+        Collections.sort(sortedList, (a, b) -> {
+            // 빈도수 내림차순
+            int freqCompare = Integer.compare(b.getValue(), a.getValue());
+            if (freqCompare != 0) {
+                return freqCompare;
+            }
+
+            // 단어 길이 내림차순
+            int lengthCompare = Integer.compare(b.getKey().length(), a.getKey().length());
+            if (lengthCompare != 0) {
+                return lengthCompare;
+            }
+
+            // 사전순 오름차순
+            return a.getKey().compareTo(b.getKey());
+        });
+
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : sortedList) {
+            sb.append(entry.getKey()).append("\n");
+        }
+
+        System.out.print(sb.toString());
+		
+    }
+}
