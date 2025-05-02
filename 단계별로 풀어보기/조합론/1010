@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class Main {
+
+    public static int combination(int n, int r) {
+        
+        // r: 0, 1 => 무조건 1
+        if (r == 0 || r == n) {
+            return 1;
+        }
+        
+        // 조합 X
+        if (r > n) {
+            return 0;
+        }
+
+        // r이 더 작은 값이 되도록 변환
+        if (r > n - r) {
+            r = n - r;
+        }
+
+        // 조합 계산
+        long result = 1;
+        for (int i = 1; i <= r; i++) {
+            result = result * (n - i + 1) / i;
+        }
+
+        return (int) result;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+
+            System.out.println(combination(m, n));
+        }
+
+        sc.close();
+    }
+	
+}
