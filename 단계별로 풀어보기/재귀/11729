@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class Main {
+    
+    public static StringBuilder sb = new StringBuilder();
+    
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+  
+		int n = sc.nextInt();
+  		sc.close();
+ 
+		sb.append((int) (Math.pow(2, n) - 1)).append('\n');
+ 
+		Hanoi(n, 1, 2, 3);
+		System.out.println(sb);
+	}
+    
+    // a, b, c
+	public static void Hanoi(int n, int a, int b, int c) {
+		// 이동할 원반의 수가 1일 경우, a -> c
+		if (n == 1) {
+			sb.append(a + " " + c + "\n");
+			return;
+		}
+ 
+		// n-1개의 원판을 a -> b
+		Hanoi(n-1, a, c, b);
+    
+		// 가장 큰 번호를 a -> c
+		sb.append(a + " " + c + "\n");
+    
+		// n-1개의 원판을 b -> c
+		Hanoi(n-1, b, a, c);
+	}
+}
