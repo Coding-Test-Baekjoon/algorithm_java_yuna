@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+	
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int[] trees = new int[n];
+        long treeHighMax = 0;
+        for (int i = 0; i < n; i++) {
+            trees[i] = sc.nextInt();
+            if (trees[i] > treeHighMax) {
+                treeHighMax = trees[i];
+            }
+        }
+
+        long min = 0;
+        long answer = 0;
+
+        while (min <= treeHighMax) {
+            long high = (min + treeHighMax) / 2;  // 절단기 높이
+            long sum = 0;  // 자른 나무 길이의 합
+            
+            for (int i = 0; i < n; i++) {
+                if (trees[i] > high) {
+                    sum += trees[i] - high;
+                }
+            }
+
+            if (sum >= m) {  // 자른 나무 길이의 합 >= 원하는 길이
+                answer = high;
+                min = high + 1;
+            } else {
+                treeHighMax = high - 1;
+            }
+        }
+
+        sc.close();
+        System.out.println(answer);
+		
+    }
+}
