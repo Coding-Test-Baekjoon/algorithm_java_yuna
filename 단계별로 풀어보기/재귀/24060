@@ -1,0 +1,88 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    static int[] arr;
+    static int[] temp;
+    static int N;
+    static int K;
+    static int answer;
+    static int count = 0;
+    
+    public static void main(String[] args) throws IOException {
+    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        Scanner sc = new Scanner(System.in);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+
+        arr = new int[N];
+        temp = new int[N];
+
+        st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        mergeSort(0, N-1);
+        
+        if (count < K) {
+            System.out.println(-1);
+        } else {
+            System.out.println(answer);
+        }
+
+        br.close();
+        bw.flush();
+        bw.close();
+    }
+
+    private static void mergeSort(int start, int end) {
+        if (start < end) {
+            int mid = (start + end) / 2;
+
+            mergeSort(start, mid);  // 분할한 좌측
+            mergeSort(mid + 1, end);  // 분할한 우측
+
+            int left = start;
+            int right = mid+1;
+            int idx = start;  // 임시 배열에 넣을 위치
+            
+            // 좌측 포인터와 우측 포인터중 하나라도 범위를 벗어나기 전까지 반복
+            // 좌측 포인터 값 큰 경우, 우측 포인터의 값을 임시 배열에 <-> 반대
+            while(left <= mid && right <= end) {
+                if (arr[left] > arr[right]) {
+                    temp[idx++] = arr[right++];
+                } else {
+                    temp[idx++] = arr[left++];
+                }
+            }
+            
+            // 좌측 포인터가 범위 벗어남 -> 좌측 모두 처리 완료 -> 우측 처리
+            if (left >mid) {
+                for(int i=right; i<=end; i++) {
+                    temp[idx++] = arr[i];
+                }
+            } else {
+                // 우측 포인터가 범위를 벗어남 -> 우측 모두 처리 완료 -> 좌측 처리
+                for(int i=left; i<=mid; i++){
+                    temp[idx++] = arr[i];
+                }
+            }
+            
+            // 원본에 임시 배열 저장
+            for(int i=start; i<=end; i++){
+                count++;
+                if(count == K) {
+                    answer = temp[i];
+                    return;
+                }
+                arr[i] = temp[i];
+            }
+        }
+    }
+}
