@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    // 배열에서 x보다 작거나 같은 값의 개수 탐색
+    public static long countLessEqual(int n, long x) {
+        long count = 0;
+        for (int i = 1; i <= n; i++) {
+            count += Math.min(n, x / i);
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        
+        long left = 1;  // 배열에서 가능한 최소값
+        long right = (long) n * n;  // 배열에서 가능한 최대값
+        long answer = -1;
+        
+        while (left <= right) {
+            long mid = (left + right) / 2;  // 현재 탐색 중인 값
+            long count = countLessEqual(n, mid);
+            
+            if (count >= k) {
+                answer = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        
+        System.out.println(answer);
+    }
+}
