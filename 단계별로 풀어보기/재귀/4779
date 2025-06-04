@@ -1,0 +1,44 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	static int n;
+	static StringBuilder answer;
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str;
+		
+        while ((str = br.readLine()) != null) {
+			n = Integer.parseInt(str);
+			answer = new StringBuilder();
+            
+			int len = (int)Math.pow(3, n);
+			for (int i = 0; i < len; i++) {
+				answer.append("-");
+			}
+			
+			createCantor(0, len);
+			System.out.println(answer);
+
+		}
+	}
+
+	public static void createCantor(int start,int size) {
+		if (size == 1) {
+			return;
+		}
+        
+		int partSize = size/3;
+        
+        // 가운데 구간 -> 공백
+		for(int i = (start+partSize); i < (start+(2*partSize)); i++) {
+			answer.setCharAt(i, ' ');
+		}
+		
+  
+		createCantor(start, partSize);  // 왼쪽
+		createCantor(start + 2*partSize, partSize);  // 오른쪽
+	}
+}
