@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class Main {
+    static int[][] board = new int[9][9];
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 9; j++)
+                board[i][j] = sc.nextInt();
+
+        sudoku();
+    }
+
+    static boolean sudoku() {
+        // 보드 전체 순회 -> 빈 칸(0) 찾기
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == 0) { // 빈 칸일 시
+                    for (int num = 1; num <= 9; num++) {
+                        if (isValid(i, j, num)) { // 조건 성립
+                            board[i][j] = num;
+                            if (sudoku()) {
+                                return true; 
+                            }
+                            board[i][j] = 0; // 실패 시
+                        }
+                    }
+                    return false; // 가능한 숫자 X => false -> 백트래킹
+                }
+            }
+        }
+        
+        answer();
+        return true;
+    }
+
+    // 현재 위치에 숫자 널어도 되는지 검사
+    static boolean isValid(int row, int col, int num) {
+        // 행 검사
+        for (int i = 0; i < 9; i++) {
+            if (board[row][i] == num) {
+                return false;
+            }
+        }
+            
+        // 열 검사
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] == num) {
+                return false;
+            }
+        }
+                
+        // 3x3 정사각형 내부 검사
+        int sr = (row / 3) * 3; // 시작 행
+        int sc = (col / 3) * 3; // 시작 열
+        for (int i = sr; i < sr + 3; i++) {
+            for (int j = sc; j < sc + 3; j++) {
+                if (board[i][j] == num) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    static void answer() {
+        for (int[] row : board) {
+            for (int n : row) {
+                System.out.print(n + " ");
+            }
+            System.out.println();
+        }
+    }
+}
