@@ -1,0 +1,31 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[]) throws IOException {
+	
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+
+        int[] temp = new int[n + 1];
+        temp[0] = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            temp[i] = temp[i - 1] + sc.nextInt();  // 누적 합
+        }
+        
+        int max = Integer.MIN_VALUE;  // 최대 값
+        for (int i = k; i <= n; i++) {
+            int sum = temp[i] - temp[i - k];  // 구간 합
+            if (sum > max) {
+                max = sum;
+            }
+        }
+        
+        System.out.println(max);
+
+        sc.close();
+		
+    }
+}
